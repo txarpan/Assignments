@@ -1,0 +1,446 @@
+#1 stack
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+#define size 10
+
+class stac{
+    public:
+    int top;
+    int arr[size];
+    stac()
+    {
+        top=-1;
+    }
+    int isFull()
+    {
+        if(top==size-1)
+        return 1;
+        else
+        return 0;
+    }
+    int isEmpty()
+    {
+        if(top==-1)
+        return 1;
+        else
+        return 0;
+    }
+    void push(int val)
+    {
+        if(isFull())
+        {
+            cout<<"stack is full:"<<"\n";
+            return;
+        }
+        top++;
+        arr[top]=val;
+    }
+    int pop()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty:"<<"\n";
+            return INT_MIN;
+        }
+        int x=arr[top];
+        top--;
+        return x;
+    }
+    int peek()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty: "<<"\n";
+            return INT_MAX;
+        }
+        return arr[top];
+    }
+    void print()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty:"<<"\n";
+            return;
+        }
+        int i;
+        for(i=top;i>=0;i--)
+        cout<<arr[i]<<" ";
+        cout<<"\n";
+    }
+};
+int main()
+{
+    stac s;
+    while(1)
+    {
+        cout<<"1 for push"<<"\n";
+        cout<<"2 for pop"<<"\n";
+        cout<<"3 for peek"<<"\n";
+        cout<<"4 for check full"<<"\n";
+        cout<<"5 for check empty"<<"\n";
+        cout<<"6 for display"<<"\n";
+        cout<<"press any key for exit"<<"\n";
+        int a,b;
+        cin>>a;
+        switch(a)
+        {
+            case 1:
+            cin>>b;
+            s.push(b);
+            break;
+            case 2:
+            cout<<s.pop()<<"\n";
+            break;
+            case 3:
+            cout<<s.peek()<<"\n";
+            break;
+            case 4:
+            if(s.isFull())
+            cout<<"Stack is full"<<"\n";
+            else
+            cout<<"Stack is not full:"<<"\n";
+            break;
+            case 5:
+            if(s.isEmpty())
+            cout<<"Stack is empty"<<"\n";
+            else
+            cout<<"Stack is not empty:"<<"\n";
+            break;
+            case 6:
+            s.print();
+            break;
+            default:
+            exit(0);
+        }
+    }
+}
+
+
+
+# 2 queu
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+#define size 10
+class que{
+    public:
+    int front,rear;
+    int arr[size];
+    que()
+    {
+        front=-1;
+        rear=-1;
+    }
+    int isFull()
+    {
+        if(rear==size-1)
+        return 1;
+        else
+        return 0;
+    }
+    int isEmpty()
+    {
+        if(front==-1)
+        return 1;
+        else
+        return 0;
+    }
+    void insert(int val)
+    {
+        if(isFull())
+        {
+            cout<<"Queue is full:"<<"\n";
+            return;
+        }
+        if(front==-1 && rear==-1)
+        {
+            front++;
+            rear++;
+        }
+        else
+        rear++;
+        arr[rear]=val;
+    }
+    int del()
+    {
+        int x;
+        if(isEmpty())
+        {
+            cout<<"Queue is empty:"<<"\n";
+            return INT_MAX;
+        }
+        if(front==rear)
+        {
+            x=arr[front];
+            front=-1;
+            rear=-1;
+        }
+        else
+        {
+            x=arr[front];
+            front++;
+        }
+        return x;
+    }
+   
+    void print()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty:"<<"\n";
+            return;
+        }
+        int i;
+        for(i=front;i<=rear;i++)
+        cout<<arr[i]<<" ";
+        cout<<"\n";
+    }
+};
+
+int main()
+{
+    que q;
+    while(1)
+    {
+        cout<<"1 for insert"<<"\n";
+        cout<<"2 for del"<<"\n";
+        cout<<"3 for check full"<<"\n";
+        cout<<"4 for check empty"<<"\n";
+        cout<<"5 for display"<<"\n";
+        cout<<"press any key for exit"<<"\n";
+        int a,b;
+        cin>>a;
+        switch(a)
+        {
+            case 1:
+            cin>>b;
+            q.insert(b);
+            break;
+            case 2:
+            cout<<q.del()<<"\n";
+            break;
+            case 3:
+            if(q.isFull())
+            cout<<"Queue is full"<<"\n";
+            else
+            cout<<"Queue is not full:"<<"\n";
+            break;
+            case 4:
+            if(q.isEmpty())
+            cout<<"Queue is empty"<<"\n";
+            else
+            cout<<"Queue is not empty:"<<"\n";
+            break;
+            case 5:
+            q.print();
+            break;
+            default:
+            exit(0);
+        }
+    }
+}
+
+
+#3 modified
+
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+const  int len=10;
+
+class stac{
+    public:
+    int top;
+    int arr[len];
+    stac()
+    {
+        top=-1;
+    }
+    int isFull()
+    {
+        if(top==len-1)
+        return 1;
+        else
+        return 0;
+    }
+    int isEmpty()
+    {
+        if(top==-1)
+        return 1;
+        else
+        return 0;
+    }
+    void push(int val)
+    {
+        if(isFull())
+        {
+            cout<<"stack is full:"<<"\n";
+            return;
+        }
+        top++;
+        arr[top]=val;
+    }
+    void pop()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty:"<<"\n";
+            return;
+        }
+        int x=arr[top];
+        top--;
+        //return x;
+    }
+    int peek()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty: "<<"\n";
+            return INT_MAX;
+        }
+        return arr[top];
+    }
+    int size()
+    {
+        return (top+1);
+    }
+    void print()
+    {
+        if(isEmpty())
+        {
+            cout<<"stack is empty:"<<"\n";
+            return;
+        }
+        int i;
+        for(i=top;i>=0;i--)
+        cout<<arr[i]<<" ";
+        cout<<"\n";
+    }
+};
+
+
+
+
+
+
+
+class que{
+    public:
+    int front,rear;
+    stac s1,s2;
+    int arr[len];
+    void insert(int val)
+    {
+      if(Full()==1)
+      {
+        cout<<"QUeue is full:"<<"\n";
+        return;
+      }
+        while(s1.isEmpty()==0)
+        {
+            s2.push(s1.peek());
+            s1.pop();
+        }
+        s1.push(val);
+        while(s2.isEmpty()==0)
+        {
+            s1.push(s2.peek());
+            s2.pop();
+        }
+    }
+    void del()
+    {
+        if(s1.isEmpty()==1)
+        {
+            cout<<"queue is empty:"<<"\n";
+            return;
+        }
+        int x=s1.peek();
+        s1.pop();
+        cout<<"The popped element is:"<<x<<"\n";
+    }
+    int Full()
+    {
+        if(s1.size()==len)
+        return 1;
+        else
+        return 0;
+    }
+    int Empty()
+    {
+        if(s1.isEmpty()==1)
+        return 1;
+        else
+        return 0;
+    }
+    void print()
+    {
+        while(s1.isEmpty()==0)
+        {
+            cout<<s1.peek()<<" ";
+            s2.push(s1.peek());
+            s1.pop();
+        }
+        cout<<"\n";
+        while(s2.isEmpty()==0)
+        {
+            s1.push(s2.peek());
+            s2.pop();
+        }
+    }
+};
+
+
+
+int main()
+{
+    que q;
+    while(1)
+    {
+        cout<<"1 for insert"<<"\n";
+        cout<<"2 for del"<<"\n";
+        cout<<"3 for check full"<<"\n";
+        cout<<"4 for check empty"<<"\n";
+        cout<<"5 for display"<<"\n";
+        cout<<"press any key for exit"<<"\n";
+        int a,b;
+        cin>>a;
+        switch(a)
+        {
+            case 1:
+            cin>>b;
+            q.insert(b);
+            break;
+            case 2:
+            q.del();
+            break;
+            case 3:
+            if(q.Full())
+            cout<<"Queue is full"<<"\n";
+            else
+            cout<<"Queue is not full:"<<"\n";
+            break;
+            case 4:
+            if(q.Empty())
+            cout<<"Queue is empty"<<"\n";
+            else
+            cout<<"Queue is not empty:"<<"\n";
+            break;
+            case 5:
+            q.print();
+            break;
+            default:
+            exit(0);
+        }
+    }
+}
+
+
+
+
